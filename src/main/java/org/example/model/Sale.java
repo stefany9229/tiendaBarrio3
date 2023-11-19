@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Sale {
 
-    private int id;
+    private Integer id;
     private Date fecha;
     private double total;
     private List<SalesLine> salesLines;
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

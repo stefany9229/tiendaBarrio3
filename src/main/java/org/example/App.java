@@ -1,8 +1,13 @@
 package org.example;
 
+import org.example.dao.DaoInvetoryCSV;
 import org.example.dao.DaoProductCSV;
 import org.example.dao.IDao;
+import org.example.dao.IDaoProduct;
+import org.example.exceptions.ResourceNotFound;
+import org.example.model.InventoryLine;
 import org.example.model.Product;
+import org.example.services.InventoryService;
 
 import java.io.IOException;
 
@@ -12,21 +17,16 @@ import java.io.IOException;
  */
 public class App 
 {
-    public static void main( String[] args ){
+    public static void main( String[] args )  {
+
 
         try {
-            IDao invetarioCSV= new DaoProductCSV();
-            //System.out.println(invetarioCSV.findAll());
-            Product product= invetarioCSV.findById(12).orElse(null);
-            product.setName("nuevo pordcuto en la Bd");
-            System.out.println(invetarioCSV.save(product));
-
-            //System.out.println(invetarioCSV.findById(120));
+            InventoryService inventario= new InventoryService(new DaoProductCSV(),new DaoInvetoryCSV());
+            //System.out.println(inventario.findByIdProduct(100004));
+            System.out.println(inventario.findByProductName("leche"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
 
 
     }
