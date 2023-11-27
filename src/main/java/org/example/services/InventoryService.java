@@ -1,11 +1,14 @@
 package org.example.services;
 
+import org.example.dao.DaoInvetoryCSV;
+import org.example.dao.DaoProductCSV;
 import org.example.dao.IDao;
 import org.example.dao.IDaoProduct;
 import org.example.exceptions.ResourceNotFound;
 import org.example.model.InventoryLine;
 import org.example.model.Product;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,7 +18,9 @@ public class InventoryService {
     private IDaoProduct<Product> productRepository;
     private IDaoProduct<InventoryLine> invetoryrRpository;
 
-    public InventoryService() {
+    public InventoryService() throws IOException {
+        this.productRepository= new DaoProductCSV();
+        this.invetoryrRpository= new DaoInvetoryCSV();
     }
 
     public InventoryService(IDaoProduct<Product> productRepository, IDaoProduct<InventoryLine> invetoryrRpository) {
